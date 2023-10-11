@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Manager extends Employee{
     int grade=1;
 
@@ -11,6 +13,19 @@ public class Manager extends Employee{
     public void display() {
         super.display();
         System.out.println("Grade: "+grade+"\nSalary: $"+calculateSalary());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Manager manager)) return false;
+        if (!super.equals(o)) return false;
+        return grade == manager.grade;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), grade);
     }
 
     @Override
